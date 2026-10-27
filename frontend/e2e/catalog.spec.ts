@@ -7,10 +7,13 @@ test("поиск, фильтр по производителю и сравнен
   await page.getByRole("button", { name: "Найти" }).click();
   await expect(page).toHaveURL(/q=/);
   await expect(page.locator("article").first()).toBeVisible();
+
+  // фильтр внутри категории: фасеты считаются по категории, поэтому первый вариант гарантированно даёт результаты
+  await page.goto("/catalog/ekskavatory");
   const narrow = (viewport?.width ?? 0) < 1024;
   if (narrow) await page.getByRole("button", { name: /Фильтры/ }).click();
   const box = page.getByRole(narrow ? "dialog" : "complementary").getByRole("checkbox").first();
-  await box.check();
+  await box.click();
   await expect(page).toHaveURL(/manufacturer=|status=|attr_/);
   if (narrow) await page.getByRole("button", { name: "Показать" }).click();
   await expect(page.locator("article").first()).toBeVisible();

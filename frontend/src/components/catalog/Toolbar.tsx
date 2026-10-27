@@ -17,7 +17,7 @@ export function Toolbar({ total }: { total: number }) {
   return (
     <div className={styles.bar}>
       <form className={styles.search} onSubmit={(e) => { e.preventDefault(); update("q", q.trim()); }} role="search">
-        <input className="input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Поиск по названию и модели" aria-label="Поиск" />
+        <input type="search" className="input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Поиск по названию и модели" aria-label="Поиск" />
         <button className="btn btn--secondary" type="submit">Найти</button>
       </form>
       <div className={styles.right}>
