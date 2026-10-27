@@ -18,6 +18,7 @@ pytestmark = pytest.mark.usefixtures("seed")
 def _sink(monkeypatch):
     monkeypatch.setattr(settings, "webhook_sink_enabled", True)
     monkeypatch.setattr(settings, "webhook_secret", "test-secret")
+    monkeypatch.setattr(settings, "webhook_url", "")
 
 
 async def test_sink_validates_signature(client):

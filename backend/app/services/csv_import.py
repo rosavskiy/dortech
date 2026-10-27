@@ -10,13 +10,13 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from decimal import Decimal, InvalidOperation
 
-from slugify import slugify
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
 from app.core.files import file_record
+from app.core.slug import slugify
 from app.models import (
     AttributeDefinition,
     AttributeOption,

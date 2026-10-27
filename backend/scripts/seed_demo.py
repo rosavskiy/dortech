@@ -8,13 +8,13 @@ from decimal import Decimal
 
 from faker import Faker
 from PIL import Image, ImageDraw, ImageFont
-from slugify import slugify
 from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.db import SessionLocal
 from app.core.files import file_record
 from app.core.security import hash_password
+from app.core.slug import slugify
 from app.models import (
     AttributeDefinition,
     AttributeOption,
