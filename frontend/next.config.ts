@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
   sassOptions: {
+    loadPaths: ["./src/styles"],
     includePaths: ["./src/styles"],
   },
   images: {
