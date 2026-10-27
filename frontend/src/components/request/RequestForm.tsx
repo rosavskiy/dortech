@@ -5,7 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api, ApiError, mediaUrl, money } from "@/lib/api";
 import { cart, useCart, CART_LIMIT } from "@/lib/cart";
-import type { EstimateIn, EstimateOut, RateUnit } from "@/lib/types";
+import { authFetch, useMe } from "@/lib/auth";
+import type { EstimateIn, EstimateOut, InquiryCreatedOut, RateUnit } from "@/lib/types";
 import { toast } from "@/components/ui/Toast";
 import styles from "./RequestForm.module.scss";
 
@@ -24,6 +25,7 @@ export function RequestForm() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const extraServices = useQuery({ queryKey: ["extra-services"], queryFn: api.extraServices });
+  const { data: me } = useMe();
 
   const estimateIn: EstimateIn | null = useMemo(() => items.length ? {
     items: items.map((i) => ({ equipment_id: i.equipment_id, quantity: i.quantity, unit: i.unit, units: i.units })),
@@ -43,13 +45,19 @@ export function RequestForm() {
       e.preventDefault(); setBusy(true); setErr(null);
       const f = new FormData(e.currentTarget);
       try {
-        const res = await api.createInquiry({
+        let parent: string | null = null;
+        try { parent = sessionStorage.getItem("dt_repeat_parent"); sessionStorage.removeItem("dt_repeat_parent"); } catch { /* ignore */ }
+        const payload = {
           ...(estimateIn as EstimateIn),
           contact_name: String(f.get("contact_name") ?? ""), contact_phone: String(f.get("contact_phone") ?? ""),
           contact_email: String(f.get("contact_email") ?? "") || null, company_name: String(f.get("company_name") ?? "") || null,
           work_place: String(f.get("work_place") ?? "") || null, comment: String(f.get("comment") ?? "") || null,
           consent: f.get("consent") === "on", website: String(f.get("website") ?? ""),
-        });
+          ...(me?.role === "client" && parent ? { parent_public_id: parent } : {}),
+        };
+        const res = me?.role === "client"
+          ? await authFetch<InquiryCreatedOut>("/account/inquiries", { method: "POST", body: JSON.stringify(payload) })
+          : await api.createInquiry(payload);
         try { sessionStorage.setItem("dt_last_inquiry", JSON.stringify(res)); } catch { /* ignore */ }
         cart.clear();
         router.push("/request/success");
@@ -102,10 +110,10 @@ export function RequestForm() {
         <section>
           <h2>Контакты</h2>
           <div className={styles.row2}>
-            <div className="field"><label className="field__label" htmlFor="contact_name">Контактное лицо *</label><input id="contact_name" name="contact_name" className="input" required minLength={2} autoComplete="name" /></div>
-            <div className="field"><label className="field__label" htmlFor="contact_phone">Телефон *</label><input id="contact_phone" name="contact_phone" className="input" type="tel" required minLength={6} autoComplete="tel" /></div>
-            <div className="field"><label className="field__label" htmlFor="contact_email">Email</label><input id="contact_email" name="contact_email" className="input" type="email" autoComplete="email" /></div>
-            <div className="field"><label className="field__label" htmlFor="company_name">Организация</label><input id="company_name" name="company_name" className="input" autoComplete="organization" /></div>
+            <div className="field"><label className="field__label" htmlFor="contact_name">Контактное лицо *</label><input id="contact_name" name="contact_name" className="input" required minLength={2} autoComplete="name" defaultValue={me ? `${me.last_name} ${me.first_name}`.trim() : ""} /></div>
+            <div className="field"><label className="field__label" htmlFor="contact_phone">Телефон *</label><input id="contact_phone" name="contact_phone" className="input" type="tel" required minLength={6} autoComplete="tel" defaultValue={me?.phone ?? ""} /></div>
+            <div className="field"><label className="field__label" htmlFor="contact_email">Email</label><input id="contact_email" name="contact_email" className="input" type="email" autoComplete="email" defaultValue={me?.email ?? ""} /></div>
+            <div className="field"><label className="field__label" htmlFor="company_name">Организация</label><input id="company_name" name="company_name" className="input" autoComplete="organization" defaultValue={me?.organization?.name ?? ""} /></div>
           </div>
           <div className="field"><label className="field__label" htmlFor="comment">Комментарий</label><textarea id="comment" name="comment" className="textarea" /></div>
           <input type="text" name="website" tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: -9999 }} aria-hidden="true" />

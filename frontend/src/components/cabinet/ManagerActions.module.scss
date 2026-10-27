@@ -1,0 +1,5 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.actions { @include card; background: $color-gray-100; padding: $space-md; display: grid; gap: $space-md; @include up(lg) { grid-template-columns: 260px 1fr; } }
+.block { display: flex; flex-direction: column; gap: $space-xs; }
+.row { display: grid; gap: $space-sm; @include up(md) { grid-template-columns: 220px 1fr auto; } }

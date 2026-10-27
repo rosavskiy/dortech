@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { SiteSettingsOut } from "@/lib/types";
 import { CartLink } from "@/components/layout/CartLink";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { HeaderAuth } from "@/components/layout/HeaderAuth";
 import styles from "./Header.module.scss";
 
 export const NAV = [
@@ -40,6 +41,7 @@ export function Header({ settings }: { settings: SiteSettingsOut }) {
             <a className={styles.phone} href={`tel:${settings.phone.replace(/[^\d+]/g, "")}`}>{settings.phone}</a>
           )}
           <Link href="/compare" className={`btn btn--ghost btn--sm ${styles.compare}`}>Сравнение</Link>
+          <HeaderAuth className={styles.compare} />
           <CartLink />
           <MobileNav items={NAV} phone={settings.phone} />
         </div>

@@ -1,0 +1,4 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.nav { display: flex; gap: $space-xs; overflow-x: auto; @include up(lg) { flex-direction: column; } a { padding: 10px 12px; border-radius: $radius-sm; white-space: nowrap; font-weight: 500; &:hover { background: $color-gray-100; color: $color-text; } } }
+.active { background: $color-secondary !important; color: #fff !important; }

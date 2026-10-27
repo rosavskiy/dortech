@@ -1,6 +1,6 @@
 export type CategoryOut = {
   id: number; name: string; slug: string; parent_id: number | null; description: string | null;
-  image_url: string | null; is_featured: boolean; equipment_count: number;
+  image_url: string | null; is_featured: boolean; equipment_count: number; meta_title: string | null; meta_description: string | null;
 };
 export type ManufacturerOut = { id: number; name: string; slug: string; logo_url: string | null };
 export type StatusOut = { id: number; code: string; name: string; color: string; allow_request: boolean };

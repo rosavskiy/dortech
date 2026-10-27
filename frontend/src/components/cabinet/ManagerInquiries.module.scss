@@ -1,0 +1,4 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.head { display: flex; justify-content: space-between; gap: $space-md; align-items: center; flex-wrap: wrap; margin-bottom: $space-md; h1 { margin: 0; } }
+.filters { display: grid; gap: $space-sm; margin-bottom: $space-md; grid-template-columns: 1fr; @include up(md) { grid-template-columns: repeat(3, 1fr); } @include up(xl) { grid-template-columns: repeat(4, 1fr) 1fr 1fr auto auto; } input, select { min-height: 42px; padding: 8px 10px; } }

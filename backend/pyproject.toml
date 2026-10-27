@@ -52,3 +52,4 @@ dev = [
 "scripts/*" = ["E501"]
 "app/admin/views.py" = ["E501"]
 "alembic/*" = ["E501", "I"]
+"app/services/files.py" = ["ASYNC240"]

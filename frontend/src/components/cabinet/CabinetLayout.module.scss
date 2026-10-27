@@ -1,0 +1,7 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.layout { display: grid; gap: $space-lg; padding-block: $space-lg; @include up(lg) { grid-template-columns: 240px 1fr; gap: $space-xl; padding-block: $space-xl; align-items: start; } }
+.side { display: flex; flex-direction: column; gap: $space-md; @include up(lg) { position: sticky; top: calc(#{$header-height} + #{$space-md}); } }
+.user { display: flex; flex-direction: column; b { @include text-truncate; } span { font-size: $font-size-sm; } }
+.adminLink { font-size: $font-size-sm; color: $color-primary; }
+.main { min-width: 0; }

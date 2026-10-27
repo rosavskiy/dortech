@@ -1,0 +1,13 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.wrap { @include up(md) { @include card; overflow-x: auto; } }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+.num { font-weight: 700; color: $color-primary; }
+.table { width: 100%; font-size: $font-size-sm;
+  thead { display: none; @include up(md) { display: table-header-group; } }
+  th { text-align: left; padding: 10px 12px; color: $color-text-secondary; font-weight: 500; border-bottom: 1px solid $color-gray-200; white-space: nowrap; }
+  td { padding: 10px 12px; vertical-align: top; @include up(md) { border-bottom: 1px solid $color-gray-200; } }
+  tbody tr { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; @include card; padding: $space-sm; margin-bottom: $space-sm;
+    @include up(md) { display: table-row; padding: 0; margin: 0; border: 0; } }
+  td[data-label]::before { content: attr(data-label); display: block; font-size: 11px; color: $color-text-muted; text-transform: uppercase; letter-spacing: 0.04em; @include up(md) { display: none; } }
+  tbody td { @include down(md) { padding: 4px; } } }

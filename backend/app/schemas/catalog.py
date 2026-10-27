@@ -13,6 +13,8 @@ class CategoryOut(BaseModel):
     image_url: str | None = None
     is_featured: bool = False
     equipment_count: int = 0
+    meta_title: str | None = None
+    meta_description: str | None = None
 
 
 class ManufacturerOut(BaseModel):

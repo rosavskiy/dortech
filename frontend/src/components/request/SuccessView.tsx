@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { money } from "@/lib/api";
 import type { InquiryCreatedOut } from "@/lib/types";
 
 export function SuccessView() {
-  const [res, setRes] = useState<InquiryCreatedOut | null | undefined>(undefined);
-  useEffect(() => { try { const raw = sessionStorage.getItem("dt_last_inquiry"); setRes(raw ? JSON.parse(raw) : null); } catch { setRes(null); } }, []);
+  const raw = useSyncExternalStore(() => () => {}, () => { try { return sessionStorage.getItem("dt_last_inquiry"); } catch { return null; } }, () => undefined);
+  const res = useMemo<InquiryCreatedOut | null | undefined>(() => { if (raw === undefined) return undefined; try { return raw ? JSON.parse(raw) : null; } catch { return null; } }, [raw]);
   if (res === undefined) return null;
   if (!res) return <div style={{ textAlign: "center" }}><h1>Заявка отправлена</h1><Link href="/catalog" className="btn btn--primary">В каталог</Link></div>;
   return (

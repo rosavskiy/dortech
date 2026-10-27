@@ -15,4 +15,5 @@ const eslintConfig = defineConfig([
   ]),
 ]);
 
+eslintConfig.push({ rules: { "@next/next/no-img-element": "off" } });
 export default eslintConfig;

@@ -1,0 +1,6 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.wrap { max-width: 440px; margin: 0 auto; }
+.card { @include card; padding: $space-lg; @include up(md) { padding: $space-xl; } }
+.links { display: flex; flex-direction: column; gap: $space-sm; margin-top: $space-md; font-size: $font-size-sm; text-align: center; a { color: $color-primary; } }
+.success { text-align: center; }
