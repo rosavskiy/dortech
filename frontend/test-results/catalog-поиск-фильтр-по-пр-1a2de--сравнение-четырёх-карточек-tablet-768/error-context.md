@@ -1,0 +1,791 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: catalog.spec.ts >> поиск, фильтр по производителю и сравнение четырёх карточек
+- Location: e2e/catalog.spec.ts:4:5
+
+# Error details
+
+```
+Test timeout of 60000ms exceeded.
+```
+
+```
+Error: locator.fill: Test timeout of 60000ms exceeded.
+Call log:
+  - waiting for getByRole('searchbox', { name: 'Поиск' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "На главную" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: ДТ
+        - generic [ref=e6]:
+          - text: ДОРТЕХ
+          - generic [ref=e7]: аренда спецтехники
+      - generic [ref=e8]:
+        - link "Сравнение" [ref=e9] [cursor=pointer]:
+          - /url: /compare
+        - link "Войти" [ref=e10] [cursor=pointer]:
+          - /url: /login
+        - link "Перейти к заявке" [ref=e11] [cursor=pointer]:
+          - /url: /request
+          - text: Заявка
+        - button "Открыть меню" [ref=e12] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - navigation "Хлебные крошки" [ref=e18]:
+        - link "Главная" [ref=e19] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e20]: /
+        - link "Каталог" [ref=e21] [cursor=pointer]:
+          - /url: /catalog
+      - heading "Каталог спецтехники" [level=1] [ref=e22]
+      - generic [ref=e23]:
+        - link "Экскаваторы 7" [ref=e24] [cursor=pointer]:
+          - /url: /catalog/ekskavatory
+          - text: Экскаваторы
+          - generic [ref=e25]: "7"
+        - link "Погрузчики 7" [ref=e26] [cursor=pointer]:
+          - /url: /catalog/pogruzchiki
+          - text: Погрузчики
+          - generic [ref=e27]: "7"
+        - link "Автокраны 6" [ref=e28] [cursor=pointer]:
+          - /url: /catalog/avtokrany
+          - text: Автокраны
+          - generic [ref=e29]: "6"
+        - link "Самосвалы 6" [ref=e30] [cursor=pointer]:
+          - /url: /catalog/samosvaly
+          - text: Самосвалы
+          - generic [ref=e31]: "6"
+        - link "Бульдозеры 6" [ref=e32] [cursor=pointer]:
+          - /url: /catalog/buldozery
+          - text: Бульдозеры
+          - generic [ref=e33]: "6"
+        - link "Катки 6" [ref=e34] [cursor=pointer]:
+          - /url: /catalog/katki
+          - text: Катки
+          - generic [ref=e35]: "6"
+        - link "Автогрейдеры 6" [ref=e36] [cursor=pointer]:
+          - /url: /catalog/avtogreydery
+          - text: Автогрейдеры
+          - generic [ref=e37]: "6"
+        - link "Манипуляторы 6" [ref=e38] [cursor=pointer]:
+          - /url: /catalog/manipulyatory
+          - text: Манипуляторы
+          - generic [ref=e39]: "6"
+      - generic [ref=e40]:
+        - button "Фильтры" [ref=e41] [cursor=pointer]
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - search [ref=e44]:
+              - textbox "Поиск" [ref=e45]:
+                - /placeholder: Поиск по названию и модели
+              - button "Найти" [ref=e46] [cursor=pointer]
+            - generic [ref=e47]:
+              - generic [ref=e48]: 50 ед.
+              - generic [ref=e49]:
+                - text: Сортировка
+                - combobox "Сортировка" [ref=e50]:
+                  - option "по порядку" [selected]
+                  - option "по названию А–Я"
+                  - option "по названию Я–А"
+                  - option "сначала дешевле"
+                  - option "сначала дороже"
+                  - option "сначала новые"
+          - generic [ref=e51]:
+            - article [ref=e52]:
+              - link "Экскаватор SANY 3CX В наличии" [ref=e53] [cursor=pointer]:
+                - /url: /equipment/ekskavator-sany-3cx-1
+                - img "Экскаватор SANY 3CX" [ref=e54]
+                - generic [ref=e55]: В наличии
+              - generic [ref=e56]:
+                - generic [ref=e57]: Экскаваторы · SANY
+                - heading [level=3] [ref=e58]:
+                  - link "Экскаватор SANY 3CX" [ref=e59] [cursor=pointer]:
+                    - /url: /equipment/ekskavator-sany-3cx-1
+                - list [ref=e60]:
+                  - listitem [ref=e61]:
+                    - generic [ref=e62]: Эксплуатационная масса
+                    - generic [ref=e63]: 37.5 т
+                  - listitem [ref=e64]:
+                    - generic [ref=e65]: Мощность двигателя
+                    - generic [ref=e66]: 192.2 л.с.
+                  - listitem [ref=e67]:
+                    - generic [ref=e68]: Объём ковша
+                    - generic [ref=e69]: 0.9 м³
+                - generic [ref=e70]: 9 500 ₽ / смена
+                - generic [ref=e71]:
+                  - button "В заявку" [ref=e72] [cursor=pointer]
+                  - button "Сравнить" [ref=e73] [cursor=pointer]
+            - article [ref=e74]:
+              - link "Погрузчик Caterpillar XE215 В наличии" [ref=e75] [cursor=pointer]:
+                - /url: /equipment/pogruzchik-caterpillar-xe215-2
+                - img "Погрузчик Caterpillar XE215" [ref=e76]
+                - generic [ref=e77]: В наличии
+              - generic [ref=e78]:
+                - generic [ref=e79]: Погрузчики · Caterpillar
+                - heading [level=3] [ref=e80]:
+                  - link "Погрузчик Caterpillar XE215" [ref=e81] [cursor=pointer]:
+                    - /url: /equipment/pogruzchik-caterpillar-xe215-2
+                - list [ref=e82]:
+                  - listitem [ref=e83]:
+                    - generic [ref=e84]: Эксплуатационная масса
+                    - generic [ref=e85]: 12.1 т
+                  - listitem [ref=e86]:
+                    - generic [ref=e87]: Мощность двигателя
+                    - generic [ref=e88]: 332.9 л.с.
+                  - listitem [ref=e89]:
+                    - generic [ref=e90]: Объём ковша
+                    - generic [ref=e91]: 0.4 м³
+                - generic [ref=e92]: 13 500 ₽ / смена
+                - generic [ref=e93]:
+                  - button "В заявку" [ref=e94] [cursor=pointer]
+                  - button "Сравнить" [ref=e95] [cursor=pointer]
+            - article [ref=e96]:
+              - link "Автокран МАЗ 5516 Занята" [ref=e97] [cursor=pointer]:
+                - /url: /equipment/avtokran-maz-5516-3
+                - img "Автокран МАЗ 5516" [ref=e98]
+                - generic [ref=e99]: Занята
+              - generic [ref=e100]:
+                - generic [ref=e101]: Автокраны · МАЗ
+                - heading [level=3] [ref=e102]:
+                  - link "Автокран МАЗ 5516" [ref=e103] [cursor=pointer]:
+                    - /url: /equipment/avtokran-maz-5516-3
+                - list [ref=e104]:
+                  - listitem [ref=e105]:
+                    - generic [ref=e106]: Эксплуатационная масса
+                    - generic [ref=e107]: 43.7 т
+                  - listitem [ref=e108]:
+                    - generic [ref=e109]: Грузоподъёмность
+                    - generic [ref=e110]: 76.6 т
+                  - listitem [ref=e111]:
+                    - generic [ref=e112]: Длина стрелы
+                    - generic [ref=e113]: 16.3 м
+                - generic [ref=e114]: 59 500 ₽ / смена
+                - generic [ref=e115]:
+                  - button "В заявку" [ref=e116] [cursor=pointer]
+                  - button "Сравнить" [ref=e117] [cursor=pointer]
+            - article [ref=e118]:
+              - link "Самосвал Volvo WB97-5 В наличии" [ref=e119] [cursor=pointer]:
+                - /url: /equipment/samosval-volvo-wb97-5-4
+                - img "Самосвал Volvo WB97-5" [ref=e120]
+                - generic [ref=e121]: В наличии
+              - generic [ref=e122]:
+                - generic [ref=e123]: Самосвалы · Volvo
+                - heading [level=3] [ref=e124]:
+                  - link "Самосвал Volvo WB97-5" [ref=e125] [cursor=pointer]:
+                    - /url: /equipment/samosval-volvo-wb97-5-4
+                - list [ref=e126]:
+                  - listitem [ref=e127]:
+                    - generic [ref=e128]: Эксплуатационная масса
+                    - generic [ref=e129]: 47.9 т
+                  - listitem [ref=e130]:
+                    - generic [ref=e131]: Мощность двигателя
+                    - generic [ref=e132]: 241.8 л.с.
+                  - listitem [ref=e133]:
+                    - generic [ref=e134]: Грузоподъёмность
+                    - generic [ref=e135]: 12 т
+                - generic [ref=e136]: 21 500 ₽ / смена
+                - generic [ref=e137]:
+                  - button "В заявку" [ref=e138] [cursor=pointer]
+                  - button "Сравнить" [ref=e139] [cursor=pointer]
+            - article [ref=e140]:
+              - link "Бульдозер Doosan QY50 Занята" [ref=e141] [cursor=pointer]:
+                - /url: /equipment/buldozer-doosan-qy50-5
+                - img "Бульдозер Doosan QY50" [ref=e142]
+                - generic [ref=e143]: Занята
+              - generic [ref=e144]:
+                - generic [ref=e145]: Бульдозеры · Doosan
+                - heading [level=3] [ref=e146]:
+                  - link "Бульдозер Doosan QY50" [ref=e147] [cursor=pointer]:
+                    - /url: /equipment/buldozer-doosan-qy50-5
+                - list [ref=e148]:
+                  - listitem [ref=e149]:
+                    - generic [ref=e150]: Эксплуатационная масса
+                    - generic [ref=e151]: 3.6 т
+                  - listitem [ref=e152]:
+                    - generic [ref=e153]: Мощность двигателя
+                    - generic [ref=e154]: 308.1 л.с.
+                  - listitem [ref=e155]:
+                    - generic [ref=e156]: Ходовая часть
+                    - generic [ref=e157]: Гусеничная
+                - generic [ref=e158]: 59 500 ₽ / смена
+                - generic [ref=e159]:
+                  - button "В заявку" [ref=e160] [cursor=pointer]
+                  - button "Сравнить" [ref=e161] [cursor=pointer]
+            - article [ref=e162]:
+              - link "Каток XCMG GR215 В наличии" [ref=e163] [cursor=pointer]:
+                - /url: /equipment/katok-xcmg-gr215-6
+                - img "Каток XCMG GR215" [ref=e164]
+                - generic [ref=e165]: В наличии
+              - generic [ref=e166]:
+                - generic [ref=e167]: Катки · XCMG
+                - heading [level=3] [ref=e168]:
+                  - link "Каток XCMG GR215" [ref=e169] [cursor=pointer]:
+                    - /url: /equipment/katok-xcmg-gr215-6
+                - list [ref=e170]:
+                  - listitem [ref=e171]:
+                    - generic [ref=e172]: Эксплуатационная масса
+                    - generic [ref=e173]: 15.7 т
+                  - listitem [ref=e174]:
+                    - generic [ref=e175]: Мощность двигателя
+                    - generic [ref=e176]: 399.5 л.с.
+                  - listitem [ref=e177]:
+                    - generic [ref=e178]: С машинистом
+                    - generic [ref=e179]: Нет
+                - generic [ref=e180]: 43 000 ₽ / смена
+                - generic [ref=e181]:
+                  - button "В заявку" [ref=e182] [cursor=pointer]
+                  - button "Сравнить" [ref=e183] [cursor=pointer]
+            - article [ref=e184]:
+              - link "Автогрейдер Hitachi ZX210 В наличии" [ref=e185] [cursor=pointer]:
+                - /url: /equipment/avtogreider-hitachi-zx210-7
+                - img "Автогрейдер Hitachi ZX210" [ref=e186]
+                - generic [ref=e187]: В наличии
+              - generic [ref=e188]:
+                - generic [ref=e189]: Автогрейдеры · Hitachi
+                - heading [level=3] [ref=e190]:
+                  - link "Автогрейдер Hitachi ZX210" [ref=e191] [cursor=pointer]:
+                    - /url: /equipment/avtogreider-hitachi-zx210-7
+                - list [ref=e192]:
+                  - listitem [ref=e193]:
+                    - generic [ref=e194]: Эксплуатационная масса
+                    - generic [ref=e195]: 4.9 т
+                  - listitem [ref=e196]:
+                    - generic [ref=e197]: Мощность двигателя
+                    - generic [ref=e198]: 417.1 л.с.
+                  - listitem [ref=e199]:
+                    - generic [ref=e200]: С машинистом
+                    - generic [ref=e201]: Нет
+                - generic [ref=e202]: 53 000 ₽ / смена
+                - generic [ref=e203]:
+                  - button "В заявку" [ref=e204] [cursor=pointer]
+                  - button "Сравнить" [ref=e205] [cursor=pointer]
+            - article [ref=e206]:
+              - link "Манипулятор КАМАЗ EC220-9 В наличии" [ref=e207] [cursor=pointer]:
+                - /url: /equipment/manipuliator-kamaz-ec220-9-8
+                - img "Манипулятор КАМАЗ EC220-9" [ref=e208]
+                - generic [ref=e209]: В наличии
+              - generic [ref=e210]:
+                - generic [ref=e211]: Манипуляторы · КАМАЗ
+                - heading [level=3] [ref=e212]:
+                  - link "Манипулятор КАМАЗ EC220-9" [ref=e213] [cursor=pointer]:
+                    - /url: /equipment/manipuliator-kamaz-ec220-9-8
+                - list [ref=e214]:
+                  - listitem [ref=e215]:
+                    - generic [ref=e216]: Эксплуатационная масса
+                    - generic [ref=e217]: 19.9 т
+                  - listitem [ref=e218]:
+                    - generic [ref=e219]: Грузоподъёмность
+                    - generic [ref=e220]: 47 т
+                  - listitem [ref=e221]:
+                    - generic [ref=e222]: Длина стрелы
+                    - generic [ref=e223]: 51.4 м
+                - generic [ref=e224]: 14 000 ₽ / смена
+                - generic [ref=e225]:
+                  - button "В заявку" [ref=e226] [cursor=pointer]
+                  - button "Сравнить" [ref=e227] [cursor=pointer]
+            - article [ref=e228]:
+              - link "Экскаватор JCB SY215 В наличии" [ref=e229] [cursor=pointer]:
+                - /url: /equipment/ekskavator-jcb-sy215-9
+                - img "Экскаватор JCB SY215" [ref=e230]
+                - generic [ref=e231]: В наличии
+              - generic [ref=e232]:
+                - generic [ref=e233]: Экскаваторы · JCB
+                - heading [level=3] [ref=e234]:
+                  - link "Экскаватор JCB SY215" [ref=e235] [cursor=pointer]:
+                    - /url: /equipment/ekskavator-jcb-sy215-9
+                - list [ref=e236]:
+                  - listitem [ref=e237]:
+                    - generic [ref=e238]: Эксплуатационная масса
+                    - generic [ref=e239]: 14.4 т
+                  - listitem [ref=e240]:
+                    - generic [ref=e241]: Мощность двигателя
+                    - generic [ref=e242]: 565.8 л.с.
+                  - listitem [ref=e243]:
+                    - generic [ref=e244]: Объём ковша
+                    - generic [ref=e245]: 3 м³
+                - generic [ref=e246]: 50 500 ₽ / смена
+                - generic [ref=e247]:
+                  - button "В заявку" [ref=e248] [cursor=pointer]
+                  - button "Сравнить" [ref=e249] [cursor=pointer]
+            - article [ref=e250]:
+              - link "Погрузчик Hyundai R220 Занята" [ref=e251] [cursor=pointer]:
+                - /url: /equipment/pogruzchik-hyundai-r220-10
+                - img "Погрузчик Hyundai R220" [ref=e252]
+                - generic [ref=e253]: Занята
+              - generic [ref=e254]:
+                - generic [ref=e255]: Погрузчики · Hyundai
+                - heading [level=3] [ref=e256]:
+                  - link "Погрузчик Hyundai R220" [ref=e257] [cursor=pointer]:
+                    - /url: /equipment/pogruzchik-hyundai-r220-10
+                - list [ref=e258]:
+                  - listitem [ref=e259]:
+                    - generic [ref=e260]: Эксплуатационная масса
+                    - generic [ref=e261]: 34.9 т
+                  - listitem [ref=e262]:
+                    - generic [ref=e263]: Мощность двигателя
+                    - generic [ref=e264]: 178.6 л.с.
+                  - listitem [ref=e265]:
+                    - generic [ref=e266]: Объём ковша
+                    - generic [ref=e267]: 1.7 м³
+                - generic [ref=e268]: Цена по запросу
+                - generic [ref=e269]:
+                  - button "В заявку" [ref=e270] [cursor=pointer]
+                  - button "Сравнить" [ref=e271] [cursor=pointer]
+            - article [ref=e272]:
+              - link "Автокран Liebherr L120 Занята" [ref=e273] [cursor=pointer]:
+                - /url: /equipment/avtokran-liebherr-l120-11
+                - img "Автокран Liebherr L120" [ref=e274]
+                - generic [ref=e275]: Занята
+              - generic [ref=e276]:
+                - generic [ref=e277]: Автокраны · Liebherr
+                - heading [level=3] [ref=e278]:
+                  - link "Автокран Liebherr L120" [ref=e279] [cursor=pointer]:
+                    - /url: /equipment/avtokran-liebherr-l120-11
+                - list [ref=e280]:
+                  - listitem [ref=e281]:
+                    - generic [ref=e282]: Эксплуатационная масса
+                    - generic [ref=e283]: 14.5 т
+                  - listitem [ref=e284]:
+                    - generic [ref=e285]: Грузоподъёмность
+                    - generic [ref=e286]: 23.5 т
+                  - listitem [ref=e287]:
+                    - generic [ref=e288]: Длина стрелы
+                    - generic [ref=e289]: 57 м
+                - generic [ref=e290]: 33 500 ₽ / смена
+                - generic [ref=e291]:
+                  - button "В заявку" [ref=e292] [cursor=pointer]
+                  - button "Сравнить" [ref=e293] [cursor=pointer]
+            - article [ref=e294]:
+              - link "Самосвал Komatsu D65-4 В наличии" [ref=e295] [cursor=pointer]:
+                - /url: /equipment/samosval-komatsu-d65-4-12
+                - img "Самосвал Komatsu D65-4" [ref=e296]
+                - generic [ref=e297]: В наличии
+              - generic [ref=e298]:
+                - generic [ref=e299]: Самосвалы · Komatsu
+                - heading [level=3] [ref=e300]:
+                  - link "Самосвал Komatsu D65-4" [ref=e301] [cursor=pointer]:
+                    - /url: /equipment/samosval-komatsu-d65-4-12
+                - list [ref=e302]:
+                  - listitem [ref=e303]:
+                    - generic [ref=e304]: Эксплуатационная масса
+                    - generic [ref=e305]: 25.7 т
+                  - listitem [ref=e306]:
+                    - generic [ref=e307]: Мощность двигателя
+                    - generic [ref=e308]: 537.7 л.с.
+                  - listitem [ref=e309]:
+                    - generic [ref=e310]: Грузоподъёмность
+                    - generic [ref=e311]: 65.4 т
+                - generic [ref=e312]: 49 500 ₽ / смена
+                - generic [ref=e313]:
+                  - button "В заявку" [ref=e314] [cursor=pointer]
+                  - button "Сравнить" [ref=e315] [cursor=pointer]
+            - article [ref=e316]:
+              - link "Бульдозер SANY F5 В наличии" [ref=e317] [cursor=pointer]:
+                - /url: /equipment/buldozer-sany-f5-13
+                - img "Бульдозер SANY F5" [ref=e318]
+                - generic [ref=e319]: В наличии
+              - generic [ref=e320]:
+                - generic [ref=e321]: Бульдозеры · SANY
+                - heading [level=3] [ref=e322]:
+                  - link "Бульдозер SANY F5" [ref=e323] [cursor=pointer]:
+                    - /url: /equipment/buldozer-sany-f5-13
+                - list [ref=e324]:
+                  - listitem [ref=e325]:
+                    - generic [ref=e326]: Эксплуатационная масса
+                    - generic [ref=e327]: 28.7 т
+                  - listitem [ref=e328]:
+                    - generic [ref=e329]: Мощность двигателя
+                    - generic [ref=e330]: 201.9 л.с.
+                  - listitem [ref=e331]:
+                    - generic [ref=e332]: Ходовая часть
+                    - generic [ref=e333]: Колёсная
+                - generic [ref=e334]: 55 500 ₽ / смена
+                - generic [ref=e335]:
+                  - button "В заявку" [ref=e336] [cursor=pointer]
+                  - button "Сравнить" [ref=e337] [cursor=pointer]
+            - article [ref=e338]:
+              - link "Каток Caterpillar 320D Занята" [ref=e339] [cursor=pointer]:
+                - /url: /equipment/katok-caterpillar-320d-14
+                - img "Каток Caterpillar 320D" [ref=e340]
+                - generic [ref=e341]: Занята
+              - generic [ref=e342]:
+                - generic [ref=e343]: Катки · Caterpillar
+                - heading [level=3] [ref=e344]:
+                  - link "Каток Caterpillar 320D" [ref=e345] [cursor=pointer]:
+                    - /url: /equipment/katok-caterpillar-320d-14
+                - list [ref=e346]:
+                  - listitem [ref=e347]:
+                    - generic [ref=e348]: Эксплуатационная масса
+                    - generic [ref=e349]: 49.9 т
+                  - listitem [ref=e350]:
+                    - generic [ref=e351]: Мощность двигателя
+                    - generic [ref=e352]: 134.7 л.с.
+                  - listitem [ref=e353]:
+                    - generic [ref=e354]: С машинистом
+                    - generic [ref=e355]: Да
+                - generic [ref=e356]: 22 000 ₽ / смена
+                - generic [ref=e357]:
+                  - button "В заявку" [ref=e358] [cursor=pointer]
+                  - button "Сравнить" [ref=e359] [cursor=pointer]
+            - article [ref=e360]:
+              - link "Автогрейдер МАЗ R924 В наличии" [ref=e361] [cursor=pointer]:
+                - /url: /equipment/avtogreider-maz-r924-15
+                - img "Автогрейдер МАЗ R924" [ref=e362]
+                - generic [ref=e363]: В наличии
+              - generic [ref=e364]:
+                - generic [ref=e365]: Автогрейдеры · МАЗ
+                - heading [level=3] [ref=e366]:
+                  - link "Автогрейдер МАЗ R924" [ref=e367] [cursor=pointer]:
+                    - /url: /equipment/avtogreider-maz-r924-15
+                - list [ref=e368]:
+                  - listitem [ref=e369]:
+                    - generic [ref=e370]: Эксплуатационная масса
+                    - generic [ref=e371]: 8.9 т
+                  - listitem [ref=e372]:
+                    - generic [ref=e373]: Мощность двигателя
+                    - generic [ref=e374]: 146.4 л.с.
+                  - listitem [ref=e375]:
+                    - generic [ref=e376]: С машинистом
+                    - generic [ref=e377]: Да
+                - generic [ref=e378]: 15 000 ₽ / смена
+                - generic [ref=e379]:
+                  - button "В заявку" [ref=e380] [cursor=pointer]
+                  - button "Сравнить" [ref=e381] [cursor=pointer]
+            - article [ref=e382]:
+              - link "Манипулятор Volvo 6520-8 В наличии" [ref=e383] [cursor=pointer]:
+                - /url: /equipment/manipuliator-volvo-6520-8-16
+                - img "Манипулятор Volvo 6520-8" [ref=e384]
+                - generic [ref=e385]: В наличии
+              - generic [ref=e386]:
+                - generic [ref=e387]: Манипуляторы · Volvo
+                - heading [level=3] [ref=e388]:
+                  - link "Манипулятор Volvo 6520-8" [ref=e389] [cursor=pointer]:
+                    - /url: /equipment/manipuliator-volvo-6520-8-16
+                - list [ref=e390]:
+                  - listitem [ref=e391]:
+                    - generic [ref=e392]: Эксплуатационная масса
+                    - generic [ref=e393]: 20 т
+                  - listitem [ref=e394]:
+                    - generic [ref=e395]: Грузоподъёмность
+                    - generic [ref=e396]: 99.6 т
+                  - listitem [ref=e397]:
+                    - generic [ref=e398]: Длина стрелы
+                    - generic [ref=e399]: 35.5 м
+                - generic [ref=e400]: 32 500 ₽ / смена
+                - generic [ref=e401]:
+                  - button "В заявку" [ref=e402] [cursor=pointer]
+                  - button "Сравнить" [ref=e403] [cursor=pointer]
+            - article [ref=e404]:
+              - link "Экскаватор Doosan DX225 В наличии" [ref=e405] [cursor=pointer]:
+                - /url: /equipment/ekskavator-doosan-dx225-17
+                - img "Экскаватор Doosan DX225" [ref=e406]
+                - generic [ref=e407]: В наличии
+              - generic [ref=e408]:
+                - generic [ref=e409]: Экскаваторы · Doosan
+                - heading [level=3] [ref=e410]:
+                  - link "Экскаватор Doosan DX225" [ref=e411] [cursor=pointer]:
+                    - /url: /equipment/ekskavator-doosan-dx225-17
+                - list [ref=e412]:
+                  - listitem [ref=e413]:
+                    - generic [ref=e414]: Эксплуатационная масса
+                    - generic [ref=e415]: 44.4 т
+                  - listitem [ref=e416]:
+                    - generic [ref=e417]: Мощность двигателя
+                    - generic [ref=e418]: 465.5 л.с.
+                  - listitem [ref=e419]:
+                    - generic [ref=e420]: Объём ковша
+                    - generic [ref=e421]: 3.5 м³
+                - generic [ref=e422]: 51 500 ₽ / смена
+                - generic [ref=e423]:
+                  - button "В заявку" [ref=e424] [cursor=pointer]
+                  - button "Сравнить" [ref=e425] [cursor=pointer]
+            - article [ref=e426]:
+              - link "Погрузчик XCMG KS-55713 Под заказ" [ref=e427] [cursor=pointer]:
+                - /url: /equipment/pogruzchik-xcmg-ks-55713-18
+                - img "Погрузчик XCMG KS-55713" [ref=e428]
+                - generic [ref=e429]: Под заказ
+              - generic [ref=e430]:
+                - generic [ref=e431]: Погрузчики · XCMG
+                - heading [level=3] [ref=e432]:
+                  - link "Погрузчик XCMG KS-55713" [ref=e433] [cursor=pointer]:
+                    - /url: /equipment/pogruzchik-xcmg-ks-55713-18
+                - list [ref=e434]:
+                  - listitem [ref=e435]:
+                    - generic [ref=e436]: Эксплуатационная масса
+                    - generic [ref=e437]: 47.8 т
+                  - listitem [ref=e438]:
+                    - generic [ref=e439]: Мощность двигателя
+                    - generic [ref=e440]: 533 л.с.
+                  - listitem [ref=e441]:
+                    - generic [ref=e442]: Объём ковша
+                    - generic [ref=e443]: 1.4 м³
+                - generic [ref=e444]: 8 000 ₽ / смена
+                - generic [ref=e445]:
+                  - button "В заявку" [ref=e446] [cursor=pointer]
+                  - button "Сравнить" [ref=e447] [cursor=pointer]
+            - article [ref=e448]:
+              - link "Автокран Hitachi BW213 Занята" [ref=e449] [cursor=pointer]:
+                - /url: /equipment/avtokran-hitachi-bw213-19
+                - img "Автокран Hitachi BW213" [ref=e450]
+                - generic [ref=e451]: Занята
+              - generic [ref=e452]:
+                - generic [ref=e453]: Автокраны · Hitachi
+                - heading [level=3] [ref=e454]:
+                  - link "Автокран Hitachi BW213" [ref=e455] [cursor=pointer]:
+                    - /url: /equipment/avtokran-hitachi-bw213-19
+                - list [ref=e456]:
+                  - listitem [ref=e457]:
+                    - generic [ref=e458]: Эксплуатационная масса
+                    - generic [ref=e459]: 26.1 т
+                  - listitem [ref=e460]:
+                    - generic [ref=e461]: Грузоподъёмность
+                    - generic [ref=e462]: 22.3 т
+                  - listitem [ref=e463]:
+                    - generic [ref=e464]: Длина стрелы
+                    - generic [ref=e465]: 27.4 м
+                - generic [ref=e466]: 48 500 ₽ / смена
+                - generic [ref=e467]:
+                  - button "В заявку" [ref=e468] [cursor=pointer]
+                  - button "Сравнить" [ref=e469] [cursor=pointer]
+            - article [ref=e470]:
+              - link "Самосвал КАМАЗ PC200-3 В наличии" [ref=e471] [cursor=pointer]:
+                - /url: /equipment/samosval-kamaz-pc200-3-20
+                - img "Самосвал КАМАЗ PC200-3" [ref=e472]
+                - generic [ref=e473]: В наличии
+              - generic [ref=e474]:
+                - generic [ref=e475]: Самосвалы · КАМАЗ
+                - heading [level=3] [ref=e476]:
+                  - link "Самосвал КАМАЗ PC200-3" [ref=e477] [cursor=pointer]:
+                    - /url: /equipment/samosval-kamaz-pc200-3-20
+                - list [ref=e478]:
+                  - listitem [ref=e479]:
+                    - generic [ref=e480]: Эксплуатационная масса
+                    - generic [ref=e481]: 17.2 т
+                  - listitem [ref=e482]:
+                    - generic [ref=e483]: Мощность двигателя
+                    - generic [ref=e484]: 70.5 л.с.
+                  - listitem [ref=e485]:
+                    - generic [ref=e486]: Грузоподъёмность
+                    - generic [ref=e487]: 93.1 т
+                - generic [ref=e488]: Цена по запросу
+                - generic [ref=e489]:
+                  - button "В заявку" [ref=e490] [cursor=pointer]
+                  - button "Сравнить" [ref=e491] [cursor=pointer]
+            - article [ref=e492]:
+              - link "Бульдозер JCB 3CX Занята" [ref=e493] [cursor=pointer]:
+                - /url: /equipment/buldozer-jcb-3cx-21
+                - img "Бульдозер JCB 3CX" [ref=e494]
+                - generic [ref=e495]: Занята
+              - generic [ref=e496]:
+                - generic [ref=e497]: Бульдозеры · JCB
+                - heading [level=3] [ref=e498]:
+                  - link "Бульдозер JCB 3CX" [ref=e499] [cursor=pointer]:
+                    - /url: /equipment/buldozer-jcb-3cx-21
+                - list [ref=e500]:
+                  - listitem [ref=e501]:
+                    - generic [ref=e502]: Эксплуатационная масса
+                    - generic [ref=e503]: 4.3 т
+                  - listitem [ref=e504]:
+                    - generic [ref=e505]: Мощность двигателя
+                    - generic [ref=e506]: 534.1 л.с.
+                  - listitem [ref=e507]:
+                    - generic [ref=e508]: Ходовая часть
+                    - generic [ref=e509]: Гусеничная
+                - generic [ref=e510]: 23 000 ₽ / смена
+                - generic [ref=e511]:
+                  - button "В заявку" [ref=e512] [cursor=pointer]
+                  - button "Сравнить" [ref=e513] [cursor=pointer]
+            - article [ref=e514]:
+              - link "Каток Hyundai XE215 В наличии" [ref=e515] [cursor=pointer]:
+                - /url: /equipment/katok-hyundai-xe215-22
+                - img "Каток Hyundai XE215" [ref=e516]
+                - generic [ref=e517]: В наличии
+              - generic [ref=e518]:
+                - generic [ref=e519]: Катки · Hyundai
+                - heading [level=3] [ref=e520]:
+                  - link "Каток Hyundai XE215" [ref=e521] [cursor=pointer]:
+                    - /url: /equipment/katok-hyundai-xe215-22
+                - list [ref=e522]:
+                  - listitem [ref=e523]:
+                    - generic [ref=e524]: Эксплуатационная масса
+                    - generic [ref=e525]: 27.3 т
+                  - listitem [ref=e526]:
+                    - generic [ref=e527]: Мощность двигателя
+                    - generic [ref=e528]: 127.9 л.с.
+                  - listitem [ref=e529]:
+                    - generic [ref=e530]: С машинистом
+                    - generic [ref=e531]: Да
+                - generic [ref=e532]: 56 500 ₽ / смена
+                - generic [ref=e533]:
+                  - button "В заявку" [ref=e534] [cursor=pointer]
+                  - button "Сравнить" [ref=e535] [cursor=pointer]
+            - article [ref=e536]:
+              - link "Автогрейдер Liebherr 5516 В наличии" [ref=e537] [cursor=pointer]:
+                - /url: /equipment/avtogreider-liebherr-5516-23
+                - img "Автогрейдер Liebherr 5516" [ref=e538]
+                - generic [ref=e539]: В наличии
+              - generic [ref=e540]:
+                - generic [ref=e541]: Автогрейдеры · Liebherr
+                - heading [level=3] [ref=e542]:
+                  - link "Автогрейдер Liebherr 5516" [ref=e543] [cursor=pointer]:
+                    - /url: /equipment/avtogreider-liebherr-5516-23
+                - list [ref=e544]:
+                  - listitem [ref=e545]:
+                    - generic [ref=e546]: Эксплуатационная масса
+                    - generic [ref=e547]: 27.1 т
+                  - listitem [ref=e548]:
+                    - generic [ref=e549]: Мощность двигателя
+                    - generic [ref=e550]: 387.6 л.с.
+                  - listitem [ref=e551]:
+                    - generic [ref=e552]: С машинистом
+                    - generic [ref=e553]: Нет
+                - generic [ref=e554]: 24 500 ₽ / смена
+                - generic [ref=e555]:
+                  - button "В заявку" [ref=e556] [cursor=pointer]
+                  - button "Сравнить" [ref=e557] [cursor=pointer]
+            - article [ref=e558]:
+              - link "Манипулятор Komatsu WB97-7 В наличии" [ref=e559] [cursor=pointer]:
+                - /url: /equipment/manipuliator-komatsu-wb97-7-24
+                - img "Манипулятор Komatsu WB97-7" [ref=e560]
+                - generic [ref=e561]: В наличии
+              - generic [ref=e562]:
+                - generic [ref=e563]: Манипуляторы · Komatsu
+                - heading [level=3] [ref=e564]:
+                  - link "Манипулятор Komatsu WB97-7" [ref=e565] [cursor=pointer]:
+                    - /url: /equipment/manipuliator-komatsu-wb97-7-24
+                - list [ref=e566]:
+                  - listitem [ref=e567]:
+                    - generic [ref=e568]: Эксплуатационная масса
+                    - generic [ref=e569]: 16.6 т
+                  - listitem [ref=e570]:
+                    - generic [ref=e571]: Грузоподъёмность
+                    - generic [ref=e572]: 99.5 т
+                  - listitem [ref=e573]:
+                    - generic [ref=e574]: Длина стрелы
+                    - generic [ref=e575]: 41.8 м
+                - generic [ref=e576]: 53 500 ₽ / смена
+                - generic [ref=e577]:
+                  - button "В заявку" [ref=e578] [cursor=pointer]
+                  - button "Сравнить" [ref=e579] [cursor=pointer]
+          - navigation "Страницы" [ref=e580]:
+            - link "1" [ref=e582] [cursor=pointer]:
+              - /url: /catalog
+            - link "2" [ref=e584] [cursor=pointer]:
+              - /url: /catalog?page=2
+            - link "3" [ref=e586] [cursor=pointer]:
+              - /url: /catalog?page=3
+            - link "Вперёд →" [ref=e587] [cursor=pointer]:
+              - /url: /catalog?page=2
+  - contentinfo [ref=e588]:
+    - generic [ref=e589]:
+      - generic [ref=e590]:
+        - generic [ref=e591]: ДОРТЕХ
+        - paragraph [ref=e592]: Более 15 лет обеспечиваем строительные объекты надёжной техникой и опытными машинистами.
+      - generic [ref=e593]:
+        - generic [ref=e594]: Разделы
+        - list [ref=e595]:
+          - listitem [ref=e596]:
+            - link "Каталог техники" [ref=e597] [cursor=pointer]:
+              - /url: /catalog
+          - listitem [ref=e598]:
+            - link "Услуги" [ref=e599] [cursor=pointer]:
+              - /url: /services
+          - listitem [ref=e600]:
+            - link "Проекты" [ref=e601] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=e602]:
+            - link "Публикации" [ref=e603] [cursor=pointer]:
+              - /url: /publications
+          - listitem [ref=e604]:
+            - link "О компании" [ref=e605] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e606]:
+            - link "Контакты" [ref=e607] [cursor=pointer]:
+              - /url: /contacts
+      - generic [ref=e608]:
+        - generic [ref=e609]: Контакты
+        - list [ref=e610]:
+          - listitem [ref=e611]:
+            - link "+7 (846) 000-00-00" [ref=e612] [cursor=pointer]:
+              - /url: tel:+78460000000
+          - listitem [ref=e613]:
+            - link "info@dortech.example" [ref=e614] [cursor=pointer]:
+              - /url: mailto:info@dortech.example
+          - listitem [ref=e615]: г. Самара, ул. Примерная, 1
+          - listitem [ref=e616]: Пн–Пт 8:00–18:00
+      - generic [ref=e617]:
+        - generic [ref=e618]: Клиентам
+        - list [ref=e619]:
+          - listitem [ref=e620]:
+            - link "Личный кабинет" [ref=e621] [cursor=pointer]:
+              - /url: /account
+          - listitem [ref=e622]:
+            - link "Оформить заявку" [ref=e623] [cursor=pointer]:
+              - /url: /request
+          - listitem [ref=e624]:
+            - link "Политика обработки персональных данных" [ref=e625] [cursor=pointer]:
+              - /url: /privacy
+          - listitem [ref=e626]:
+            - link "Пользовательское соглашение" [ref=e627] [cursor=pointer]:
+              - /url: /terms
+    - generic [ref=e628]: © ООО «ДОРТЕХ», 2026
+  - button "Open Next.js Dev Tools" [ref=e635] [cursor=pointer]
+  - alert [ref=e639]
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from "@playwright/test";
+  2  | import { expectNoHorizontalScroll } from "./helpers";
+  3  | 
+  4  | test("поиск, фильтр по производителю и сравнение четырёх карточек", async ({ page, viewport }) => {
+  5  |   await page.goto("/catalog");
+> 6  |   await page.getByRole("searchbox", { name: "Поиск" }).fill("экскаватор");
+     |                                                        ^ Error: locator.fill: Test timeout of 60000ms exceeded.
+  7  |   await page.getByRole("button", { name: "Найти" }).click();
+  8  |   await expect(page).toHaveURL(/q=/);
+  9  |   await expect(page.locator("article").first()).toBeVisible();
+  10 |   const narrow = (viewport?.width ?? 0) < 1024;
+  11 |   if (narrow) await page.getByRole("button", { name: /Фильтры/ }).click();
+  12 |   const box = page.getByRole(narrow ? "dialog" : "complementary").getByRole("checkbox").first();
+  13 |   await box.check();
+  14 |   await expect(page).toHaveURL(/manufacturer=|status=|attr_/);
+  15 |   if (narrow) await page.getByRole("button", { name: "Показать" }).click();
+  16 |   await expect(page.locator("article").first()).toBeVisible();
+  17 |   await expectNoHorizontalScroll(page);
+  18 | 
+  19 |   await page.goto("/catalog");
+  20 |   const buttons = page.getByRole("button", { name: /^Сравнить$/ });
+  21 |   for (let i = 0; i < 4; i++) await buttons.nth(i).click();
+  22 |   await buttons.nth(4).click();
+  23 |   await expect(page.getByText("Сравнивать можно не более 4 карточек")).toBeVisible();
+  24 |   await page.goto("/compare");
+  25 |   await expect(page.locator("table")).toBeVisible();
+  26 |   await expect(page.locator("thead th")).toHaveCount(5);
+  27 |   await expectNoHorizontalScroll(page);
+  28 | });
+  29 | 
+  30 | test("пустой и мусорный запросы не ломают каталог", async ({ page }) => {
+  31 |   for (const qs of ["?q=", "?page=abc", "?attr_weight_min=xx&ordering=zzz", "?q=%D1%84%D1%8B%D0%B2%D0%B0%D0%BF%D1%80%D0%BE%D0%BB"]) {
+  32 |     const res = await page.goto("/catalog" + qs);
+  33 |     expect(res?.status()).toBe(200);
+  34 |     await expect(page.locator("h1")).toBeVisible();
+  35 |   }
+  36 | });
+  37 | 
+```

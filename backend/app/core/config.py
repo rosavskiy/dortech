@@ -1,8 +1,9 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Annotated
 
 from pydantic import Field, field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -14,7 +15,7 @@ class Settings(BaseSettings):
     debug: bool = True
     secret_key: str = "dev-secret-change-me"
     site_url: str = "http://localhost:3000"
-    allowed_hosts: list[str] = Field(default_factory=lambda: ["*"])
+    allowed_hosts: Annotated[list[str], NoDecode] = Field(default_factory=lambda: ["*"])
     admin_url_path: str = "admin"
     app_version: str = "dev"
     git_commit: str = "unknown"
@@ -26,7 +27,7 @@ class Settings(BaseSettings):
     private_root: Path = BASE_DIR / "private"
     logs_root: Path = BASE_DIR / "logs"
     max_upload_mb: int = 20
-    allowed_upload_extensions: list[str] = Field(
+    allowed_upload_extensions: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["pdf", "doc", "docx", "xls", "xlsx", "jpg", "jpeg", "png"]
     )
 
@@ -41,7 +42,7 @@ class Settings(BaseSettings):
     smtp_password: str = ""
     smtp_use_tls: bool = False
     default_from_email: str = "Дортех <noreply@localhost>"
-    notification_emails: list[str] = Field(default_factory=list)
+    notification_emails: Annotated[list[str], NoDecode] = Field(default_factory=list)
 
     webhook_url: str = ""
     webhook_secret: str = ""

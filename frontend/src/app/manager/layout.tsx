@@ -8,5 +8,5 @@ export default async function Layout({ children }: { children: React.ReactNode }
   const me = await getMe();
   if (!me) redirect("/login?next=/manager/inquiries");
   if (me.role === "client") redirect("/account/inquiries");
-  return <SessionProvider me={me}><CabinetLayout me={me} items={[{ href: "/manager/inquiries", label: "Заявки" }, { href: "/manager/organizations", label: "Организации" }]}>{children}</CabinetLayout></SessionProvider>;
+  return <SessionProvider me={me}><CabinetLayout me={me} items={[{ href: "/manager/inquiries", label: "Заявки" }, { href: "/manager/organizations", label: "Организации" }, ...(me.role === "admin" ? [{ href: "/manager/import", label: "Импорт CSV" }] : [])]}>{children}</CabinetLayout></SessionProvider>;
 }
