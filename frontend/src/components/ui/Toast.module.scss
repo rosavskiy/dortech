@@ -1,0 +1,6 @@
+@use "tokens" as *;
+.stack { position: fixed; left: $space-md; right: $space-md; bottom: $space-md; z-index: $z-toast; display: flex; flex-direction: column; gap: $space-sm; pointer-events: none; @media (min-width: $bp-md) { left: auto; width: 360px; } }
+.toast { padding: $space-md; border-radius: $radius-md; background: $color-secondary; color: #fff; box-shadow: $shadow-lg; font-size: $font-size-sm; }
+.success { background: $color-success; }
+.error { background: $color-danger; }
+.info { background: $color-secondary; }

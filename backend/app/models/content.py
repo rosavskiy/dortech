@@ -30,7 +30,7 @@ class Service(SeoMixin, TimestampMixin, Base):
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     short_description: Mapped[str | None] = mapped_column(Text)
     body: Mapped[str | None] = mapped_column(Text)
-    cover: Mapped[str | None] = mapped_column(String(500))
+    cover: Mapped[dict | None] = mapped_column(JSONB)
     icon: Mapped[str | None] = mapped_column(String(100))
     is_published: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
     sort: Mapped[int] = mapped_column(Integer, default=100, server_default="100")
@@ -47,7 +47,7 @@ class Project(SeoMixin, TimestampMixin, Base):
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     short_description: Mapped[str | None] = mapped_column(Text)
     body: Mapped[str | None] = mapped_column(Text)
-    cover: Mapped[str | None] = mapped_column(String(500))
+    cover: Mapped[dict | None] = mapped_column(JSONB)
     year: Mapped[int | None] = mapped_column(Integer)
     customer_name: Mapped[str | None] = mapped_column(String(255))
     location: Mapped[str | None] = mapped_column(String(255))
@@ -66,17 +66,15 @@ class ProjectImage(Base):
     __tablename__ = "project_images"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id", ondelete="CASCADE"), index=True, nullable=False
-    )
-    file: Mapped[str] = mapped_column(String(500), nullable=False)
+    project_id: Mapped[int] = mapped_column(ForeignKey("projects.id", ondelete="CASCADE"), index=True, nullable=False)
+    file: Mapped[dict] = mapped_column(JSONB, nullable=False)
     alt: Mapped[str | None] = mapped_column(String(255))
     sort: Mapped[int] = mapped_column(Integer, default=100, server_default="100")
 
     project: Mapped[Project] = relationship(back_populates="images")
 
     def __str__(self) -> str:
-        return self.file
+        return (self.file or {}).get("filename", "") if isinstance(self.file, dict) else str(self.file)
 
 
 class Publication(SeoMixin, TimestampMixin, Base):
@@ -87,7 +85,7 @@ class Publication(SeoMixin, TimestampMixin, Base):
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     short_description: Mapped[str | None] = mapped_column(Text)
     body: Mapped[str | None] = mapped_column(Text)
-    cover: Mapped[str | None] = mapped_column(String(500))
+    cover: Mapped[dict | None] = mapped_column(JSONB)
     published_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)
     is_published: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
 
@@ -107,7 +105,7 @@ class SiteSettings(Base):
     map_embed: Mapped[str | None] = mapped_column(Text)
     hero_title: Mapped[str | None] = mapped_column(String(255))
     hero_subtitle: Mapped[str | None] = mapped_column(Text)
-    hero_image: Mapped[str | None] = mapped_column(String(500))
+    hero_image: Mapped[dict | None] = mapped_column(JSONB)
     about_short: Mapped[str | None] = mapped_column(Text)
     stats: Mapped[dict | None] = mapped_column(JSONB)
     footer_text: Mapped[str | None] = mapped_column(Text)

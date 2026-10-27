@@ -1,0 +1,5 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.grid { display: grid; gap: $space-xl; @include up(lg) { grid-template-columns: 1fr 1fr; } }
+.info { p { display: flex; flex-direction: column; gap: 2px; font-size: $font-size-lg; } }
+.map { margin-top: $space-lg; iframe { width: 100%; min-height: 320px; border: 0; border-radius: $radius-md; } }

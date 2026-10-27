@@ -1,0 +1,16 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+.header { position: sticky; top: 0; z-index: $z-sticky; background: #fff; border-bottom: 1px solid $color-gray-200; }
+.top { display: none; background: $color-secondary; color: #fff; font-size: $font-size-sm; @include up(lg) { display: block; } }
+.topInner { @include flex-between; min-height: 36px; a { color: #fff; opacity: 0.9; margin-left: $space-lg; } }
+.topContacts { display: flex; gap: $space-md; }
+.main { display: flex; align-items: center; gap: $space-md; min-height: $header-height-mobile; @include up(lg) { min-height: $header-height; gap: $space-xl; } }
+.logo { display: flex; align-items: center; gap: $space-sm; flex-shrink: 0; color: $color-secondary; &:hover { color: $color-secondary; } }
+.logoMark { @include flex-center; width: 40px; height: 40px; border-radius: 6px; background: $color-primary; color: #fff; font-weight: 800; letter-spacing: 0.02em; }
+.logoText { display: flex; flex-direction: column; font-weight: 800; letter-spacing: 0.06em; line-height: 1; font-size: 18px;
+  small { font-weight: 400; letter-spacing: 0; font-size: 11px; color: $color-text-secondary; margin-top: 3px; text-transform: none; } }
+.nav { display: none; gap: $space-lg; font-weight: 500; margin-left: auto; @include up(lg) { display: flex; } a { white-space: nowrap; } }
+.actions { display: flex; align-items: center; gap: $space-sm; margin-left: auto; @include up(lg) { margin-left: 0; } }
+.phone { display: none; font-weight: 700; @include up(xl) { display: inline; } }
+.compare { display: none; @include up(md) { display: inline-flex; } }

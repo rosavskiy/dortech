@@ -1,0 +1,9 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.empty { text-align: center; padding: $space-2xl 0; }
+.wrap { display: flex; flex-direction: column; gap: $space-md; }
+.actions { @include flex-between; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table { min-width: 640px; th, td { padding: 10px 12px; border-bottom: 1px solid $color-gray-200; text-align: left; vertical-align: top; font-size: $font-size-sm; } thead th { vertical-align: bottom; min-width: 200px; } tbody th { color: $color-text-secondary; font-weight: 400; position: sticky; left: 0; background: #fff; } }
+.head { display: flex; flex-direction: column; gap: $space-sm; img { border-radius: $radius-sm; aspect-ratio: 3 / 2; object-fit: cover; width: 100%; } a { font-weight: 700; } }
+.rm { color: $color-text-muted; font-size: 12px; text-align: left; &:hover { color: $color-danger; } }

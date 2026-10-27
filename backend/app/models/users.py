@@ -43,12 +43,8 @@ class User(TimestampMixin, Base):
     patronymic: Mapped[str | None] = mapped_column(String(100))
     phone: Mapped[str | None] = mapped_column(String(32))
     position: Mapped[str | None] = mapped_column(String(150))
-    role: Mapped[Role] = mapped_column(
-        Enum(Role, native_enum=False, length=20), default=Role.client, nullable=False
-    )
-    organization_id: Mapped[int | None] = mapped_column(
-        ForeignKey("organizations.id", ondelete="SET NULL"), index=True
-    )
+    role: Mapped[Role] = mapped_column(Enum(Role, native_enum=False, length=20), default=Role.client, nullable=False)
+    organization_id: Mapped[int | None] = mapped_column(ForeignKey("organizations.id", ondelete="SET NULL"), index=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
     email_confirmed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     blocked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
@@ -56,9 +52,7 @@ class User(TimestampMixin, Base):
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
     organization: Mapped[Organization | None] = relationship(back_populates="users")
-    sessions: Mapped[list["UserSession"]] = relationship(
-        back_populates="user", cascade="all, delete-orphan"
-    )
+    sessions: Mapped[list["UserSession"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
     @property
     def full_name(self) -> str:
@@ -81,9 +75,7 @@ class UserSession(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=new_uuid)
     token_hash: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
-    user_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False
-    )
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     ip: Mapped[str | None] = mapped_column(String(64))
@@ -101,12 +93,8 @@ class EmailToken(Base):
     __tablename__ = "email_tokens"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False
-    )
-    kind: Mapped[EmailTokenKind] = mapped_column(
-        Enum(EmailTokenKind, native_enum=False, length=20), nullable=False
-    )
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
+    kind: Mapped[EmailTokenKind] = mapped_column(Enum(EmailTokenKind, native_enum=False, length=20), nullable=False)
     token_hash: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
     expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

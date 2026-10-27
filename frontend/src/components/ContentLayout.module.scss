@@ -1,0 +1,8 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.crumbs { display: flex; gap: $space-sm; font-size: $font-size-sm; color: $color-text-secondary; margin-bottom: $space-md; flex-wrap: wrap; span > span { margin-right: $space-sm; } }
+.facts { display: flex; gap: $space-md; flex-wrap: wrap; color: $color-text-secondary; font-size: $font-size-sm; }
+.lead { font-size: $font-size-lg; max-width: 72ch; }
+.cover { border-radius: $radius-md; margin: $space-lg 0; max-height: 480px; object-fit: cover; width: 100%; }
+.gallery { display: grid; gap: $space-md; grid-template-columns: repeat(2, 1fr); margin-top: $space-xl; @include up(md) { grid-template-columns: repeat(3, 1fr); } img { border-radius: $radius-md; aspect-ratio: 3 / 2; object-fit: cover; } }
+.cta { @include card; margin-top: $space-xl; padding: $space-lg; display: flex; gap: $space-md; align-items: center; justify-content: space-between; flex-wrap: wrap; background: $color-gray-100; }

@@ -1,0 +1,10 @@
+{% extends "_base.html" %}{% block title %}Новая заявка {{ number }}{% endblock %}
+{% block body %}
+<h2 style="margin:0 0 12px">Новая заявка {{ number }}</h2>
+<p><b>{{ contact.name }}</b>, {{ contact.phone }}{% if contact.email %}, {{ contact.email }}{% endif %}{% if company_name %}<br>{{ company_name }}{% endif %}</p>
+<p>Период: {{ period.from or '—' }} — {{ period.to or '—' }}<br>Место: {{ work_place or '—' }}</p>
+<ul>{% for i in items %}<li>{{ i.name }} {{ i.model or '' }} — {{ i.quantity }} × {{ i.units }} {{ 'см.' if i.unit == 'shift' else 'сут.' }}</li>{% endfor %}</ul>
+{% if comment %}<p>Комментарий: {{ comment }}</p>{% endif %}
+<p><b>Предварительно: {{ estimate.total }} ₽</b></p>
+<p><a href="{{ links.manager_url }}">Открыть заявку</a></p>
+{% endblock %}

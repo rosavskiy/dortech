@@ -1,0 +1,12 @@
+{% extends "_base.html" %}{% block title %}Заявка {{ number }} принята{% endblock %}
+{% block body %}
+<h2 style="margin:0 0 12px">Заявка {{ number }} принята</h2>
+<p>{{ contact.name }}, спасибо за обращение. Мы получили вашу заявку и свяжемся с вами в ближайшее время.</p>
+<table style="border-collapse:collapse;width:100%;font-size:14px">
+{% for i in items %}<tr><td style="padding:6px 0;border-bottom:1px solid #eee">{{ i.name }} {{ i.model or '' }}</td>
+<td style="padding:6px 0;border-bottom:1px solid #eee;text-align:right">{{ i.quantity }} × {{ i.units }} {{ 'см.' if i.unit == 'shift' else 'сут.' }}</td>
+<td style="padding:6px 0;border-bottom:1px solid #eee;text-align:right">{% if i.line_total %}{{ i.line_total }} ₽{% else %}по запросу{% endif %}</td></tr>{% endfor %}
+</table>
+<p style="font-size:16px"><b>Предварительно: {% if estimate.is_partial %}от {% endif %}{{ estimate.total }} ₽ {{ estimate.vat_label or '' }}</b></p>
+<p style="color:#666;font-size:13px">Расчёт носит информационный характер. Окончательные условия подтверждает менеджер.</p>
+{% endblock %}

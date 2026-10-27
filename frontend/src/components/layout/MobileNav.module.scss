@@ -1,0 +1,8 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+.burger { @include flex-center; flex-direction: column; gap: 5px; width: 44px; height: 44px; border-radius: $radius-sm;
+  span { display: block; width: 22px; height: 2px; background: $color-secondary; }
+  @include up(lg) { display: none; } }
+.panel { position: fixed; inset: $header-height-mobile 0 0 0; background: #fff; z-index: $z-modal; padding: $space-lg $space-md; display: flex; flex-direction: column; gap: $space-lg; overflow-y: auto; }
+.list { display: flex; flex-direction: column; a { padding: $space-md 0; border-bottom: 1px solid $color-gray-200; font-size: $font-size-lg; font-weight: 500; } }

@@ -1,0 +1,19 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.hero { background: $color-secondary center/cover no-repeat; color: #fff; position: relative; &::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26, 26, 26, 0.92), rgba(26, 26, 26, 0.6)); } }
+.heroInner { position: relative; padding: $space-2xl 0; max-width: 760px; @include up(md) { padding: $space-3xl 0; } h1 { color: #fff; } p { font-size: $font-size-lg; opacity: 0.9; } }
+.heroActions { display: flex; gap: $space-sm; flex-wrap: wrap; margin-top: $space-lg; }
+.head { @include flex-between; gap: $space-md; margin-bottom: $space-lg; flex-wrap: wrap; h2 { margin: 0; } }
+.cats { display: grid; gap: $space-md; grid-template-columns: repeat(2, 1fr); @include up(md) { grid-template-columns: repeat(3, 1fr); } @include up(lg) { grid-template-columns: repeat(4, 1fr); } }
+.cat { @include card; @include card-hover; overflow: hidden; display: flex; flex-direction: column; img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; } }
+.catBody { display: flex; flex-direction: column; padding: $space-md; small { color: $color-text-muted; } }
+.grid { display: grid; gap: $space-md; grid-template-columns: 1fr; @media (min-width: 480px) { grid-template-columns: repeat(2, 1fr); } @include up(lg) { grid-template-columns: repeat(4, 1fr); } }
+.alt { }
+.services { display: grid; gap: $space-md; @include up(md) { grid-template-columns: repeat(2, 1fr); } @include up(lg) { grid-template-columns: repeat(3, 1fr); } }
+.service { @include card; @include card-hover; padding: $space-lg; display: flex; flex-direction: column; gap: $space-xs; border-left: 4px solid $color-primary; }
+.about { background: $color-secondary; color: #fff; h2 { color: #fff; } }
+.aboutInner { display: grid; gap: $space-xl; padding: $space-2xl 0; @include up(lg) { grid-template-columns: 1.2fr 1fr; align-items: center; padding: $space-3xl 0; } }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: $space-md; div { display: flex; flex-direction: column; } b { font-size: 32px; color: $color-primary; @include up(md) { font-size: 40px; } } span { opacity: 0.8; font-size: $font-size-sm; } }
+.cards3 { display: grid; gap: $space-md; @include up(md) { grid-template-columns: repeat(3, 1fr); } }
+.card { @include card; @include card-hover; overflow: hidden; display: flex; flex-direction: column; img { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; } }
+.cardBody { display: flex; flex-direction: column; gap: 4px; padding: $space-md; }

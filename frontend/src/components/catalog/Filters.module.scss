@@ -1,0 +1,11 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.toggle { width: 100%; @include up(lg) { display: none; } }
+.desktop { display: none; @include up(lg) { display: block; } }
+.body { display: flex; flex-direction: column; gap: $space-lg; &[aria-busy="true"] { opacity: 0.6; } }
+.group { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; legend { font-weight: 700; margin-bottom: $space-sm; padding: 0; } }
+.check { display: flex; align-items: center; gap: $space-sm; font-size: $font-size-sm; cursor: pointer; min-height: 28px; span { color: $color-text-muted; margin-left: auto; } input { width: 18px; height: 18px; accent-color: $color-primary; } }
+.link { @include flex-between; font-size: $font-size-sm; min-height: 28px; span { color: $color-text-muted; } }
+.range { display: grid; grid-template-columns: 1fr 1fr; gap: $space-sm; input { min-height: 40px; padding: 8px 10px; } }
+.sheet { position: fixed; inset: 0; z-index: $z-modal; background: #fff; padding: $space-md; overflow-y: auto; display: flex; flex-direction: column; gap: $space-lg; @include up(lg) { display: none; } }
+.sheetHead { @include flex-between; }

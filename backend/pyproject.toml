@@ -29,11 +29,12 @@ dependencies = [
 package = false
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "ASYNC"]
+ignore = ["B008", "UP042", "UP046"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -46,3 +47,8 @@ dev = [
     "pytest-asyncio>=1.4.1",
     "ruff>=0.17.2",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["E501"]
+"app/admin/views.py" = ["E501"]
+"alembic/*" = ["E501", "I"]

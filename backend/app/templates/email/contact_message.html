@@ -1,0 +1,3 @@
+{% extends "_base.html" %}{% block title %}Сообщение с сайта{% endblock %}
+{% block body %}<h2 style="margin:0 0 12px">Сообщение с сайта</h2>
+<p><b>{{ name }}</b>{% if phone %}, {{ phone }}{% endif %}{% if email %}, {{ email }}{% endif %}</p><p>{{ text }}</p>{% endblock %}

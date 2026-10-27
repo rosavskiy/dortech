@@ -1,0 +1,8 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.crumbs { display: flex; gap: $space-sm; font-size: $font-size-sm; color: $color-text-secondary; margin-bottom: $space-md; flex-wrap: wrap; }
+.cats { display: flex; gap: $space-sm; flex-wrap: wrap; margin: $space-md 0 $space-xl; }
+.cat { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: 1px solid $color-gray-300; border-radius: 999px; font-size: $font-size-sm; font-weight: 500; &:hover { border-color: $color-primary; } span { color: $color-text-muted; } }
+.layout { display: grid; gap: $space-lg; @include up(lg) { grid-template-columns: 260px 1fr; gap: $space-xl; align-items: start; } }
+.grid { display: grid; gap: $space-md; grid-template-columns: 1fr; @media (min-width: 480px) { grid-template-columns: repeat(2, 1fr); } @include up(lg) { grid-template-columns: repeat(3, 1fr); } @include up(xl) { grid-template-columns: repeat(4, 1fr); } }
+.empty { padding: $space-2xl 0; text-align: center; }
