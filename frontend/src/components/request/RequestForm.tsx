@@ -68,16 +68,14 @@ export function RequestForm() {
               return (
                 <div key={i.equipment_id} className={styles.item}>
                   <Link href={`/equipment/${i.slug}`} className={styles.itemImg}>{img && <img src={img} alt="" width={160} height={107} />}</Link>
-                  <div className={styles.itemBody}>
-                    <Link href={`/equipment/${i.slug}`}><b>{i.name}</b></Link>
-                    <div className={styles.itemControls}>
-                      <label>Кол-во<input type="number" min={1} max={100} className="input" value={i.quantity} onChange={(e) => cart.update(i.equipment_id, { quantity: Math.max(1, Number(e.target.value) || 1) })} /></label>
-                      <label>Тариф<select className="select" value={i.unit} onChange={(e) => cart.update(i.equipment_id, { unit: e.target.value as RateUnit })}><option value="shift">за смену</option><option value="day">за сутки</option></select></label>
-                      <label>{i.unit === "shift" ? "Смен" : "Суток"}<input type="number" min={1} max={366} className="input" placeholder={periodDays ? String(periodDays) : "1"} value={i.units ?? ""} onChange={(e) => cart.update(i.equipment_id, { units: e.target.value ? Math.max(1, Number(e.target.value)) : null })} /></label>
-                    </div>
-                    <div className={styles.itemPrice}>{line ? (line.needs_quote ? "по запросу" : <>{money(line.unit_price)} × {line.units} × {line.quantity} = <b>{money(line.line_total)}</b></>) : ""}</div>
-                  </div>
+                  <Link href={`/equipment/${i.slug}`} className={styles.itemTitle}><b>{i.name}</b></Link>
                   <button type="button" className={styles.remove} aria-label="Убрать" onClick={() => cart.remove(i.equipment_id)}>×</button>
+                  <div className={styles.itemControls}>
+                    <label>Кол-во<input type="number" min={1} max={100} className="input" value={i.quantity} onChange={(e) => cart.update(i.equipment_id, { quantity: Math.max(1, Number(e.target.value) || 1) })} /></label>
+                    <label>Тариф<select className="select" value={i.unit} onChange={(e) => cart.update(i.equipment_id, { unit: e.target.value as RateUnit })}><option value="shift">за смену</option><option value="day">за сутки</option></select></label>
+                    <label>{i.unit === "shift" ? "Смен" : "Суток"}<input type="number" min={1} max={366} className="input" placeholder={periodDays ? String(periodDays) : "1"} value={i.units ?? ""} onChange={(e) => cart.update(i.equipment_id, { units: e.target.value ? Math.max(1, Number(e.target.value)) : null })} /></label>
+                  </div>
+                  <div className={styles.itemPrice}>{line ? (line.needs_quote ? "по запросу" : <>{money(line.unit_price)} × {line.units} × {line.quantity} = <b>{money(line.line_total)}</b></>) : ""}</div>
                 </div>
               );
             })}

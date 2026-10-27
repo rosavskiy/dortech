@@ -1,0 +1,5 @@
+{% extends "_base.html" %}{% block title %}Заявка {{ number }}: {{ status_label }}{% endblock %}
+{% block body %}<h2 style="margin:0 0 12px">Заявка {{ number }}: {{ status_label }}</h2>
+<p>{{ contact.name }}, статус вашей заявки изменён на «{{ status_label }}».</p>
+{% if comment_for_client %}<p>Комментарий менеджера: {{ comment_for_client }}</p>{% endif %}
+<p><a href="{{ site_url }}/account/inquiries/{{ public_id }}">Открыть заявку в кабинете</a></p>{% endblock %}

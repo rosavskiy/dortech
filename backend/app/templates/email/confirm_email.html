@@ -1,0 +1,5 @@
+{% extends "_base.html" %}{% block title %}Подтверждение email{% endblock %}
+{% block body %}<h2 style="margin:0 0 12px">Подтвердите email</h2>
+<p>{{ name }}, для завершения регистрации в личном кабинете нажмите на кнопку:</p>
+<p><a href="{{ link }}" style="display:inline-block;padding:12px 24px;background:#ff6b00;color:#fff;border-radius:4px;text-decoration:none">Подтвердить email</a></p>
+<p style="color:#666;font-size:13px">Ссылка действует 24 часа. Если вы не регистрировались, просто проигнорируйте письмо.</p>{% endblock %}
