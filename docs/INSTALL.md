@@ -20,7 +20,7 @@ cd backend && uv run python -m app.worker                         # отправ
 cd frontend && npm run dev                                        # сайт http://localhost:3000
 ```
 
-Переменные окружения бэкенда читаются из `backend/.env` (см. `deploy/.env.example`); для разработки значения по умолчанию уже рабочие (`DATABASE_URL`, SMTP на Mailpit `localhost:1025`). Панель: http://localhost:8000/admin. Демо-пользователи: `admin@dortech-demo.ru`, `manager@dortech-demo.ru`, `client-a@dortech-demo.ru`, `client-b@dortech-demo.ru`, пароль `Dortech2026!`.
+Переменные окружения бэкенда читаются из `backend/.env` (см. `deploy/.env.example`); для разработки значения по умолчанию уже рабочие (`DATABASE_URL`, SMTP на Mailpit `localhost:1025`). Для локальных прогонов e2e удобно задать `RATE_LIMIT_ENABLED=0` и `WEBHOOK_SINK_ENABLED=1` с `WEBHOOK_URL=http://127.0.0.1:8000/api/v1/webhook-sink`, `WEBHOOK_SECRET=dev-secret`. Панель: http://localhost:8000/admin. Демо-пользователи: `admin@dortech-demo.ru`, `manager@dortech-demo.ru`, `client-a@dortech-demo.ru`, `client-b@dortech-demo.ru`, пароль `Dortech2026!`.
 
 Проверки: `make test` (pytest, нужна БД `dortech_test`), `make e2e` (Playwright, нужны запущенные сервисы), `make lint`.
 
