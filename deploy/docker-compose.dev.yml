@@ -1,0 +1,22 @@
+# Локальная разработка: только инфраструктурные сервисы.
+# Бэкенд и фронтенд запускаются нативно (make backend / make frontend).
+name: dortech-dev
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: dortech
+      POSTGRES_USER: dortech
+      POSTGRES_PASSWORD: dortech
+    ports: ["5432:5432"]
+    volumes: [pgdata-dev:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dortech -d dortech"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ["1025:1025", "8025:8025"]
+volumes:
+  pgdata-dev:

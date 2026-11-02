@@ -1,0 +1,2 @@
+# /etc/cron.d/dortech-backup — ежедневный бэкап прода в 03:00 (локальное время сервера)
+0 3 * * * root /srv/dortech/prod/src/deploy/backup.sh prod >> /srv/dortech/prod/logs/backup.log 2>&1

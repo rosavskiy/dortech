@@ -1,0 +1,58 @@
+# Переменные берутся из deploy/edge.env (см. edge.env.example)
+{
+	email {$ACME_EMAIL}
+}
+
+(site) {
+	encode zstd gzip
+	request_body {
+		max_size 25MB
+	}
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+	handle_path /media/public/* {
+		root * {args[2]}
+		file_server
+		header Cache-Control "public, max-age=604800"
+	}
+	@backend path /api/* /{$ADMIN_URL_PATH}/* /{$ADMIN_URL_PATH}
+	handle @backend {
+		reverse_proxy {args[0]}:8000
+	}
+	handle {
+		reverse_proxy {args[1]}:3000
+	}
+}
+
+{$PROD_HOST} {
+	import site dortech-prod-backend-1 dortech-prod-frontend-1 /srv/media/prod/public
+	log {
+		output file /var/log/caddy/prod-access.log {
+			roll_size 50mb
+			roll_keep 10
+		}
+	}
+}
+
+www.{$PROD_HOST} {
+	redir https://{$PROD_HOST}{uri} permanent
+}
+
+{$TEST_HOST} {
+	basic_auth {
+		{$TEST_BASIC_USER} {$TEST_BASIC_HASH}
+	}
+	header X-Robots-Tag "noindex, nofollow"
+	import site dortech-test-backend-1 dortech-test-frontend-1 /srv/media/test/public
+	log {
+		output file /var/log/caddy/test-access.log {
+			roll_size 50mb
+			roll_keep 5
+		}
+	}
+}

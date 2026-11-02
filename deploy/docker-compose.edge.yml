@@ -1,0 +1,24 @@
+# Единый Caddy для всех окружений на сервере: HTTPS, маршрутизация test/prod.
+#   docker network create edge
+#   docker compose -f deploy/docker-compose.edge.yml up -d
+name: dortech-edge
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    env_file: edge.env
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+      - ./logs/caddy:/var/log/caddy
+      - ${PROD_MEDIA_DIR:-/srv/dortech/prod/media}:/srv/media/prod:ro
+      - ${TEST_MEDIA_DIR:-/srv/dortech/test/media}:/srv/media/test:ro
+    networks: [edge]
+volumes:
+  caddy-data:
+  caddy-config:
+networks:
+  edge:
+    external: true

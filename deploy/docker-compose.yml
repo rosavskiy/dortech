@@ -1,0 +1,79 @@
+# Одно окружение (test или prod). Имя проекта и переменные берутся из .env:
+#   docker compose --env-file .env -f deploy/docker-compose.yml up -d
+# Caddy (edge) поднимается отдельно из docker-compose.edge.yml и ходит в сеть edge.
+name: ${COMPOSE_PROJECT_NAME:-dortech}
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dortech}
+      POSTGRES_USER: ${POSTGRES_USER:-dortech}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dortech} -d ${POSTGRES_DB:-dortech}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [internal]
+
+  backend:
+    build:
+      context: ../backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-dortech}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dortech}
+    volumes:
+      - ./media:/app/media
+      - ./private:/app/private
+      - ./logs:/app/logs
+    depends_on:
+      postgres: { condition: service_healthy }
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "${UVICORN_WORKERS:-4}", "--proxy-headers", "--forwarded-allow-ips=*"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health').status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    networks: [internal, edge]
+
+  worker:
+    build:
+      context: ../backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-dortech}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dortech}
+    volumes:
+      - ./media:/app/media
+      - ./private:/app/private
+      - ./logs:/app/logs
+    depends_on:
+      postgres: { condition: service_healthy }
+    command: ["python", "-m", "app.worker"]
+    networks: [internal]
+
+  frontend:
+    build:
+      context: ../frontend
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+    restart: unless-stopped
+    environment:
+      INTERNAL_API_URL: http://backend:8000
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    depends_on:
+      backend: { condition: service_healthy }
+    networks: [internal, edge]
+
+volumes:
+  pgdata:
+
+networks:
+  internal:
+  edge:
+    external: true
