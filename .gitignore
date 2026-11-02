@@ -33,3 +33,7 @@ load/results/
 frontend/test-results/
 frontend/playwright-report/
 frontend/blob-report/
+
+# свидетельства протоколов
+!docs/protocols/*.log
+!docs/protocols/*.json
