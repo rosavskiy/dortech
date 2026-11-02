@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { api, mediaUrl } from "@/lib/api";
 import styles from "@/app/page.module.scss";
-export const revalidate = 60;
 export const metadata = { title: "Выполненные проекты", description: "Объекты, на которых работала техника Дортех." };
 export default async function Page() {
   const items = await api.projects();

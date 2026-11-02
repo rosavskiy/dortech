@@ -2,7 +2,6 @@ import Link from "next/link";
 import { api, mediaUrl } from "@/lib/api";
 import { Pagination } from "@/components/catalog/Pagination";
 import styles from "@/app/page.module.scss";
-export const dynamic = "force-dynamic";
 export const metadata = { title: "Публикации", description: "Новости и статьи компании Дортех." };
 export default async function Page(props: { searchParams: Promise<{ page?: string }> }) {
   const { page } = await props.searchParams;

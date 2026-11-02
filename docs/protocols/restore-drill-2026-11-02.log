@@ -1,5 +1,5 @@
 == Учебное восстановление из резервной копии, 02.11.2026 14:06, среда разработки Исполнителя (macOS, PostgreSQL 16.15 (Homebrew))
-== код: v1.0.0 (862e663)
+== код: v1.0.1 (862e663)
 == 1. Резервная копия (pg_dump -Fc) базы dortech
 166039 байт /Users/rosavskii/projects/dortech/backups/dortech-20261102-1406.dump
 42423a45c8a499ff1ac0250a4aa57a137f4b3cab7a95af5918b7252ba34c3e8d  /Users/rosavskii/projects/dortech/backups/dortech-20261102-1406.dump

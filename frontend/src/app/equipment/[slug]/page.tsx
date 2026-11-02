@@ -6,7 +6,6 @@ import { CardActions } from "@/components/catalog/CardActions";
 import { Gallery } from "@/components/catalog/Gallery";
 import styles from "./page.module.scss";
 
-export const revalidate = 60;
 
 async function load(slug: string) {
   try { return await api.equipment(slug); } catch (e) { if (e instanceof ApiError && e.status === 404) return null; throw e; }

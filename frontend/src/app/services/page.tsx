@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { api, mediaUrl } from "@/lib/api";
 import styles from "@/app/page.module.scss";
-export const revalidate = 60;
 export const metadata = { title: "Услуги", description: "Услуги компании Дортех: аренда спецтехники с экипажем и без, земляные работы, перевозки." };
 export default async function Page() {
   const items = await api.services();

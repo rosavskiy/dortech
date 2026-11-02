@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect, redirect } from "next/navigation";
 import { api, ApiError } from "@/lib/api";
 import { ContentLayout } from "@/components/ContentLayout";
-export const revalidate = 60;
 
 async function load(slug: string) { try { return await api.page(slug); } catch (e) { if (e instanceof ApiError && e.status === 404) return null; throw e; } }
 

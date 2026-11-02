@@ -7,6 +7,10 @@ import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toast";
 
+/** Страницы рендерятся по запросу (без предварительного рендера при сборке, когда бэкенд недоступен);
+ *  данные кэшируются на уровне fetch через next.revalidate (см. lib/api.ts). */
+export const dynamic = "force-dynamic";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export async function generateMetadata(): Promise<Metadata> {

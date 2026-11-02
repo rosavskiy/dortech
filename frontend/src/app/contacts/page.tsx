@@ -1,7 +1,6 @@
 import { api } from "@/lib/api";
 import { ContactForm } from "@/components/ContactForm";
 import styles from "./page.module.scss";
-export const revalidate = 60;
 export const metadata = { title: "Контакты", description: "Контакты ООО «ДОРТЕХ»: телефон, email, адрес, режим работы." };
 export default async function Page() {
   const s = await api.settings();

@@ -3,7 +3,6 @@ import { api, mediaUrl } from "@/lib/api";
 import { EquipmentCard } from "@/components/catalog/EquipmentCard";
 import styles from "./page.module.scss";
 
-export const revalidate = 60;
 
 export default async function HomePage() {
   const h = await api.home();
